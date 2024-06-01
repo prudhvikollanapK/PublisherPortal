@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="my-4">Content Offerings</h1>
+        <div class="list-group">
+            {% for offering in offerings %}
+            <a href="#" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">{{ offering.title }}</h5>
+                <p class="mb-1">{{ offering.description }}</p>
+                <small>${{ offering.price }}</small>
+                <a href="{% url 'add_to_cart' offering.id %}" class="btn btn-primary btn-sm float-right">Add to Cart</a>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

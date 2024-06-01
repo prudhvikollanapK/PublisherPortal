@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="my-4">Cart</h1>
+        <ul class="list-group">
+            {% for offering in offerings %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ offering.title }}
+                <span>${{ offering.price }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="mt-3">
+            <h5>Total: ${{ total_price }}</h5>
+            <form method="post" action="{% url 'checkout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Checkout</button>
+            </form>
+            <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Continue Shopping</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
